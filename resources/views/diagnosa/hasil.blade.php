@@ -1,36 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-4xl mx-auto">
-    <div class="mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
-        <h2 class="text-3xl font-extrabold text-slate-800">Hasil Analisis 🐾</h2>
-        <a href="{{ route('diagnosa.index') }}" class="bg-white px-6 py-2 rounded-xl font-bold text-emerald-600 shadow-sm border border-emerald-100 hover:bg-emerald-50 transition">← Konsultasi Ulang</a>
+<div class="max-w-4xl mx-auto px-2">
+    <div class="mb-6 flex flex-row justify-between items-center gap-4 text-center md:text-left">
+        <h2 class="text-xl md:text-3xl font-extrabold text-slate-800">Hasil Analisis 🐾</h2>
+        <a href="{{ route('diagnosa.index') }}" class="w-auto bg-white px-6 py-2 rounded-xl font-bold text-emerald-600 shadow-sm border border-emerald-100">← Ulangi</a>
     </div>
 
     @if(count($hasilDiagnosa) > 0)
         <div class="space-y-6">
             @foreach($hasilDiagnosa as $index => $h)
-            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 overflow-hidden relative">
+            <div class="bg-white p-5 md:p-8 rounded-2xl md:rounded-3xl shadow-sm border border-slate-100 relative mb-6 overflow-hidden">
+                
                 @if($index == 0)
-                    <div class="absolute top-0 right-0 bg-emerald-600 text-white px-6 py-1 rounded-bl-2xl font-bold text-sm">
-                        Rekomendasi Utama
+                    <div class="absolute top-0 right-0 bg-emerald-600 text-white px-3 py-1 md:px-6 md:py-1.5 rounded-bl-xl md:rounded-bl-2xl font-bold text-[10px] md:text-sm uppercase tracking-wider">
+                        ⭐ Rekomendasi Utama
                     </div>
                 @endif
-
-                <div class="flex flex-col md:flex-row justify-between items-start gap-6 mb-6">
-                    <div class="flex-1">
-                        <h3 class="text-2xl font-bold text-slate-800 leading-tight">{{ $h['nama'] }}</h3>
-                        <p class="text-slate-500 mt-2 text-lg">{{ $h['deskripsi'] }}</p>
+                
+                <div class="mt-4 md:mt-0 flex flex-col md:flex-row justify-between items-center md:items-start gap-4 md:gap-6">
+                    <div class="flex-1 text-center md:text-left">
+                        <h3 class="text-xl md:text-2xl font-bold text-slate-800 leading-tight">{{ $h['nama'] }}</h3>
+                        <p class="text-sm md:text-lg text-slate-500 mt-2">{{ $h['deskripsi'] }}</p>
                     </div>
-                    <div class="bg-emerald-50 p-6 rounded-3xl text-center min-w-[140px] border border-emerald-100">
-                        <span class="block text-4xl font-black text-emerald-600">{{ number_format($h['skor'], 1) }}%</span>
-                        <span class="text-xs font-bold text-emerald-800 uppercase tracking-widest mt-1">Kepastian</span>
+                    
+                    <div class="bg-emerald-50 px-6 py-4 rounded-2xl text-center border border-emerald-100 w-full md:w-auto order-first md:order-last">
+                        <span class="block text-3xl md:text-4xl font-black text-emerald-600">{{ number_format($h['skor'], 1) }}%</span>
+                        <span class="text-[10px] font-bold text-emerald-800 uppercase tracking-widest">Kepastian</span>
                     </div>
                 </div>
 
-                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                    <h4 class="font-bold text-slate-800 flex items-center gap-2 mb-3">
-                        <span class="bg-emerald-100 p-1 rounded-lg">💡</span> Saran Tindakan:
+                <div class="mt-6 bg-slate-50 p-4 md:p-6 rounded-xl border border-slate-100 text-sm md:text-base text-center md:text-left">
+                    <h4 class="font-bold text-slate-800 mb-2 flex items-center justify-center md:justify-start gap-2">
+                        <span>💡</span> Saran Tindakan:
                     </h4>
                     <p class="text-slate-600 leading-relaxed">{{ $h['solusi'] }}</p>
                 </div>
