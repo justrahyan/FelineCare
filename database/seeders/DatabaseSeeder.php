@@ -11,6 +11,10 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        $this->call([
+            UserSeeder::class,
+        ]);
+
         // 1. Data Gejala
         $gejalas = [
             ['G01', 'Demam Tinggi (>39.5°C)', 'Umum'],
