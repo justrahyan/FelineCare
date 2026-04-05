@@ -22,7 +22,6 @@
             <div class="hidden md:flex gap-8 font-bold text-slate-600">
                 <a href="/" class="hover:text-emerald-600 transition">Beranda</a>
                 <a href="{{ route('diagnosa.index') }}" class="hover:text-emerald-600 transition">Diagnosa</a>
-                <a href="#" class="hover:text-emerald-600 transition">Tentang</a>
             </div>
 
             <button id="menu-btn" class="md:hidden text-emerald-600 p-2 rounded-xl hover:bg-emerald-50 transition">
