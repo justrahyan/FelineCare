@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BasisPengetahuanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DiagnosaController;
 use App\Http\Controllers\AuthController;
@@ -41,5 +42,15 @@ Route::middleware(['auth'])->group(function () {
         'edit' => 'admin.gejala.edit',
         'update' => 'admin.gejala.update',
         'destroy' => 'admin.gejala.destroy',
+    ]);
+
+    // CRUD Basis Pengetahuan (Aturan/Rule)
+    Route::resource('/admin/rules', BasisPengetahuanController::class)->names([
+        'index' => 'admin.rules.index',
+        'create' => 'admin.rules.create',
+        'store' => 'admin.rules.store',
+        'edit' => 'admin.rules.edit',
+        'update' => 'admin.rules.update',
+        'destroy' => 'admin.rules.destroy',
     ]);
 });
