@@ -28,13 +28,14 @@ class BasisPengetahuanController extends Controller
     {
         $request->validate([
             'id_penyakit' => 'required',
-            'gejala' => 'required|array', // Harus berupa array (checklist)
-            'mb' => 'required|numeric|between:0,1',
-            'md' => 'required|numeric|between:0,1',
+            'gejala' => 'required|array',
         ]);
 
         foreach ($request->gejala as $id_gejala) {
-            // Cek dulu apakah rule ini sudah ada supaya tidak duplikat
+            // Ambil nilai MB dari dropdown dinamis
+            $mb = $request->input("mb_{$id_gejala}");
+            $md = $request->input("md_{$id_gejala}") ?? 0;
+
             $exists = BasisPengetahuan::where('id_penyakit', $request->id_penyakit)
                 ->where('id_gejala', $id_gejala)
                 ->exists();
@@ -43,13 +44,13 @@ class BasisPengetahuanController extends Controller
                 BasisPengetahuan::create([
                     'id_penyakit' => $request->id_penyakit,
                     'id_gejala' => $id_gejala,
-                    'mb' => $request->mb,
-                    'md' => $request->md,
+                    'mb' => $mb,
+                    'md' => $md,
                 ]);
             }
         }
 
-        return redirect()->route('admin.rules.index')->with('success', 'Aturan basis pengetahuan berhasil ditambahkan!');
+        return redirect()->route('admin.rules.index')->with('success', 'Berhasil menambahkan basis pengetahuan!');
     }
 
     // Edit dan Update tetap satu-satu karena nilai MB/MD tiap gejala bisa beda di sistem pakar yang teliti.
