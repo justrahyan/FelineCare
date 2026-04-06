@@ -12,7 +12,8 @@ class BasisPengetahuanController extends Controller
 {
     public function index()
     {
-        $rules = BasisPengetahuan::with(['penyakit', 'gejala'])->get();
+        // Grouping berdasarkan penyakit agar di index tidak berantakan
+        $rules = Penyakit::with(['basis_pengetahuan.gejala'])->has('basis_pengetahuan')->get();
         return view('admin.rules.index', compact('rules'));
     }
 
@@ -27,15 +28,31 @@ class BasisPengetahuanController extends Controller
     {
         $request->validate([
             'id_penyakit' => 'required',
-            'id_gejala' => 'required',
+            'gejala' => 'required|array', // Harus berupa array (checklist)
             'mb' => 'required|numeric|between:0,1',
             'md' => 'required|numeric|between:0,1',
         ]);
 
-        BasisPengetahuan::create($request->all());
-        return redirect()->route('admin.rules.index')->with('success', 'Aturan berhasil ditambahkan!');
+        foreach ($request->gejala as $id_gejala) {
+            // Cek dulu apakah rule ini sudah ada supaya tidak duplikat
+            $exists = BasisPengetahuan::where('id_penyakit', $request->id_penyakit)
+                ->where('id_gejala', $id_gejala)
+                ->exists();
+
+            if (!$exists) {
+                BasisPengetahuan::create([
+                    'id_penyakit' => $request->id_penyakit,
+                    'id_gejala' => $id_gejala,
+                    'mb' => $request->mb,
+                    'md' => $request->md,
+                ]);
+            }
+        }
+
+        return redirect()->route('admin.rules.index')->with('success', 'Aturan basis pengetahuan berhasil ditambahkan!');
     }
 
+    // Edit dan Update tetap satu-satu karena nilai MB/MD tiap gejala bisa beda di sistem pakar yang teliti.
     public function edit($id)
     {
         $rule = BasisPengetahuan::where('id_rule', $id)->firstOrFail();
@@ -47,14 +64,12 @@ class BasisPengetahuanController extends Controller
     public function update(Request $request, $id)
     {
         $rule = BasisPengetahuan::where('id_rule', $id)->firstOrFail();
-        
         $request->validate([
             'id_penyakit' => 'required',
             'id_gejala' => 'required',
             'mb' => 'required|numeric|between:0,1',
             'md' => 'required|numeric|between:0,1',
         ]);
-
         $rule->update($request->all());
         return redirect()->route('admin.rules.index')->with('success', 'Aturan berhasil diperbarui!');
     }
