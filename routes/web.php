@@ -58,4 +58,5 @@ Route::middleware(['auth'])->group(function () {
     // Riwayat Konsultasi (Diagnosa Logs)
     Route::get('/admin/riwayat', [RiwayatController::class, 'index'])->name('admin.riwayat.index');
     Route::delete('/admin/riwayat/{id}', [RiwayatController::class, 'destroy'])->name('admin.riwayat.destroy');
+    Route::get('/admin/riwayat/{id}', [RiwayatController::class, 'show'])->name('admin.riwayat.show');
 });

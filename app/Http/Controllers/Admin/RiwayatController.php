@@ -23,4 +23,11 @@ class RiwayatController extends Controller
         
         return redirect()->route('admin.riwayat.index')->with('success', 'Data riwayat konsultasi berhasil dihapus!');
     }
+
+    public function show($id)
+    {
+        // Load relasi detail_konsultasi dan gejala di dalamnya
+        $konsultasi = \App\Models\Konsultasi::with('detail_konsultasi.gejala')->where('id_konsultasi', $id)->firstOrFail();
+        return view('admin.riwayat.show', compact('konsultasi'));
+    }
 }

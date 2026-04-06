@@ -45,8 +45,19 @@
                     </td>
                     <td class="p-6 text-center">
                         <div class="flex justify-center gap-2">
+                            <a href="{{ route('admin.riwayat.show', $r->id_konsultasi) }}" 
+                            class="p-2 bg-emerald-50 text-emerald-600 rounded-lg hover:bg-emerald-100 transition flex items-center justify-center cursor-pointer"
+                            title="Lihat Detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                        <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0-4 0"/>
+                                        <path d="M21 12q-3.6 6-9 6t-9-6q3.6-6 9-6t9 6"/>
+                                    </g>
+                                </svg>
+                            </a>
+
                             <button type="button" 
-                                    onclick="openDeleteModal('{{ route('admin.riwayat.destroy', $r->id_konsultasi) }}', 'Riwayat {{ $r->nama_pemilik }}')"
+                                    onclick="openDeleteModal('{{ route('admin.riwayat.destroy', $r->id_konsultasi) }}', 'Konsultasi {{ $r->nama_pemilik }}')"
                                     class="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition flex items-center justify-center cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/>
