@@ -11,7 +11,7 @@ class RiwayatController extends Controller
     public function index()
     {
         // Mengambil data konsultasi terbaru (dari tabel konsultasis)
-        $riwayats = Konsultasi::latest('tanggal')->get();
+        $riwayats = Konsultasi::latest('tanggal')->paginate(15);
         return view('admin.riwayat.index', compact('riwayats'));
     }
 
