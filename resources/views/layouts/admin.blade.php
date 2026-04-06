@@ -87,6 +87,8 @@
         </main>
     </div>
 
+    @include('components.logout-modal')
+
     <style>
         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }

@@ -30,12 +30,10 @@
     </a>
 
     <div class="pt-8 border-t border-slate-50 mt-4">
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit" class="flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl font-bold text-red-500 hover:bg-red-50 transition text-sm cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4m7 14l5-5l-5-5m5 5H9"/></svg>
-                Keluar (Logout)
-            </button>
-        </form>
+        <button type="button" onclick="openLogoutModal()" 
+                class="flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl font-bold text-red-500 hover:bg-red-50 transition text-sm cursor-pointer active:scale-95">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4m7 14l5-5l-5-5m5 5H9"/></svg>
+            Keluar (Logout)
+        </button>
     </div>
 </nav>
