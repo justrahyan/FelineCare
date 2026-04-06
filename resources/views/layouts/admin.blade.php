@@ -29,7 +29,7 @@
                 <a href="{{ route('admin.dashboard') }}" class="block px-4 py-3 rounded-xl font-bold {{ request()->routeIs('admin.dashboard') ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-100' : 'text-slate-600 hover:bg-emerald-50 hover:text-emerald-600' }} transition text-sm">
                     Dashboard
                 </a>
-                <a href="#" class="block px-4 py-3 rounded-xl font-bold text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 transition text-sm">
+                <a href="{{ route('admin.penyakit.index') }}" class="block px-4 py-3 rounded-xl font-bold text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 transition text-sm">
                     Data Penyakit
                 </a>
                 <a href="#" class="block px-4 py-3 rounded-xl font-bold text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 transition text-sm">
