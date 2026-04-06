@@ -34,7 +34,7 @@
                         </td>
                         <td class="p-5 md:p-6 text-xs md:text-sm">
                             <span class="block font-bold text-slate-800">{{ \Carbon\Carbon::parse($r->tanggal)->format('d M Y') }}</span>
-                            <span class="text-[10px] text-slate-400 font-black uppercase">{{ \Carbon\Carbon::parse($r->tanggal)->format('H:i') }} WIB</span>
+                            <span class="text-[10px] text-slate-400 font-black uppercase">{{ \Carbon\Carbon::parse($r->tanggal)->format('H:i') }} WITA</span>
                         </td>
                         <td class="p-5 md:p-6">
                             <span class="block font-bold text-slate-800 text-sm md:text-base">{{ $r->nama_pemilik }}</span>
