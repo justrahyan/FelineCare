@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\PenyakitController;
 use App\Http\Controllers\Admin\GejalaController;
+use App\Http\Controllers\Admin\RiwayatController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -53,4 +54,8 @@ Route::middleware(['auth'])->group(function () {
         'update' => 'admin.rules.update',
         'destroy' => 'admin.rules.destroy',
     ]);
+
+    // Riwayat Konsultasi (Diagnosa Logs)
+    Route::get('/admin/riwayat', [RiwayatController::class, 'index'])->name('admin.riwayat.index');
+    Route::delete('/admin/riwayat/{id}', [RiwayatController::class, 'destroy'])->name('admin.riwayat.destroy');
 });

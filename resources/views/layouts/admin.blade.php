@@ -38,6 +38,9 @@
                 <a href="{{ route('admin.rules.index') }}" class="block px-4 py-3 rounded-xl font-bold text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 transition text-sm">
                     Basis Pengetahuan
                 </a>
+                <a href="{{ route('admin.riwayat.index') }}" class="block px-4 py-3 rounded-xl font-bold {{ request()->routeIs('admin.riwayat.*') ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-100' : 'text-slate-600 hover:bg-emerald-50 hover:text-emerald-600' }} transition text-sm cursor-pointer">
+                    Riwayat Diagnosa
+                </a>
                 <div class="pt-8">
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
