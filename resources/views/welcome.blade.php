@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12 py-6 md:py-12 px-4">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12 pt-6 md:pt-18 px-4">
     <div class="flex-1 w-full order-1 md:order-2">
         <img src="{{ asset('img/kucing.jpg') }}" 
              alt="Ilustrasi Kucing FelineCare" 

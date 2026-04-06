@@ -1,10 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-4xl mx-auto px-2">
-    <div class="mb-6 flex flex-row justify-between items-center gap-4 text-center md:text-left">
-        <h2 class="text-xl md:text-3xl font-extrabold text-slate-800">Hasil Analisis 🐾</h2>
-        <a href="{{ route('diagnosa.index') }}" class="w-auto bg-white px-6 py-2 rounded-xl font-bold text-emerald-600 shadow-sm border border-emerald-100">← Ulangi</a>
+<div class="max-w-4xl mx-auto px-2 mt-8 md:mt-16">
+    <div class="mb-10 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="text-center md:text-left">
+            <h2 class="text-2xl md:text-4xl font-black text-slate-800 tracking-tight italic">Hasil Analisis 🐾</h2>
+            <p class="text-slate-400 text-sm md:text-base mt-1 font-medium italic">Berdasarkan gejala yang Anda berikan.</p>
+        </div>
+        <a href="{{ route('diagnosa.index') }}" class="inline-flex items-center gap-2 bg-white px-8 py-3 rounded-2xl font-black text-emerald-600 shadow-sm border border-emerald-100 hover:gap-3 transition-all cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M11 17l-5-5m0 0l5-5m-5 5h12"/></svg>
+            Ulangi Diagnosa
+        </a>
     </div>
 
     @if(count($hasilDiagnosa) > 0)
