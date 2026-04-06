@@ -60,12 +60,12 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="space-y-1.5">
                         <label class="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">Nama Pemilik</label>
-                        <input type="text" name="nama_pemilik" x-model="nama_pemilik" placeholder="Contoh: Rahyan" 
+                        <input type="text" name="nama_pemilik" x-model="nama_pemilik" placeholder="Masukkan nama Anda" 
                                class="w-full px-5 py-3.5 rounded-xl border-2 border-slate-50 focus:border-emerald-500 focus:bg-white bg-slate-50/50 outline-none transition font-bold text-sm">
                     </div>
                     <div class="space-y-1.5">
                         <label class="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">Nama Kucing</label>
-                        <input type="text" name="nama_kucing" x-model="nama_kucing" placeholder="Contoh: Haerin" 
+                        <input type="text" name="nama_kucing" x-model="nama_kucing" placeholder="Masukkan nama kucing Anda" 
                                class="w-full px-5 py-3.5 rounded-xl border-2 border-slate-50 focus:border-emerald-500 focus:bg-white bg-slate-50/50 outline-none transition font-bold text-sm">
                     </div>
                 </div>
