@@ -5,6 +5,7 @@ use App\Http\Controllers\DiagnosaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\PenyakitController;
+use App\Http\Controllers\Admin\GejalaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,5 +31,15 @@ Route::middleware(['auth'])->group(function () {
         'edit' => 'admin.penyakit.edit',
         'update' => 'admin.penyakit.update',
         'destroy' => 'admin.penyakit.destroy',
+    ]);
+
+    // CRUD Gejala
+    Route::resource('/admin/gejala', GejalaController::class)->names([
+        'index' => 'admin.gejala.index',
+        'create' => 'admin.gejala.create',
+        'store' => 'admin.gejala.store',
+        'edit' => 'admin.gejala.edit',
+        'update' => 'admin.gejala.update',
+        'destroy' => 'admin.gejala.destroy',
     ]);
 });

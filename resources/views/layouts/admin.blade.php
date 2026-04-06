@@ -32,7 +32,7 @@
                 <a href="{{ route('admin.penyakit.index') }}" class="block px-4 py-3 rounded-xl font-bold text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 transition text-sm">
                     Data Penyakit
                 </a>
-                <a href="#" class="block px-4 py-3 rounded-xl font-bold text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 transition text-sm">
+                <a href="{{ route('admin.gejala.index') }}" class="block px-4 py-3 rounded-xl font-bold text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 transition text-sm">
                     Data Gejala
                 </a>
                 <a href="#" class="block px-4 py-3 rounded-xl font-bold text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 transition text-sm">
