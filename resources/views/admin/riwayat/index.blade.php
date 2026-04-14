@@ -41,7 +41,24 @@
                             <span class="text-xs text-emerald-600 font-bold uppercase tracking-tighter">Anabul: {{ $r->nama_kucing }}</span>
                         </td>
                         <td class="p-5 md:p-6">
-                            <span class="font-bold text-slate-700 text-sm md:text-base">{{ $r->hasil_diagnosa }}</span>
+                            @php
+                                $results = explode(',', $r->hasil_diagnosa);
+                                $count = count($results);
+                            @endphp
+                            
+                            <div class="flex flex-col gap-1.5">
+                                <span class="font-bold text-slate-800 text-sm md:text-base leading-tight">
+                                    {{ trim($results[0]) }}
+                                </span>
+
+                                @if($count > 1)
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="bg-slate-100 text-slate-500 px-2 py-0.5 rounded-md text-[10px] font-bold">
+                                            +{{ $count - 1 }} Kemungkinan Lain
+                                        </span>
+                                    </div>
+                                @endif
+                            </div>
                         </td>
                         <td class="p-5 md:p-6 text-center">
                             <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-[10px] md:text-xs font-black">
