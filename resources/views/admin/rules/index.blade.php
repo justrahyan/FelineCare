@@ -1,8 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+<div class="max-w-7xl mx-auto" x-data="{ active: null }"> <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
         <div>
             <h1 class="text-2xl md:text-3xl font-black text-slate-800 tracking-tight">Basis Pengetahuan</h1>
             <p class="text-slate-500 text-xs md:text-sm mt-1">Klik pada nama penyakit untuk melihat daftar gejala terkait.</p>
@@ -20,9 +19,9 @@
 
     <div class="space-y-4">
         @foreach($rules as $index => $p)
-        <div x-data="{ expanded: false }" class="bg-white rounded-[1.5rem] md:rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden transition-all duration-300">
+        <div class="bg-white rounded-[1.5rem] md:rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden transition-all duration-300">
             
-            <div @click="expanded = !expanded" 
+            <div @click="active = (active === {{ $index }} ? null : {{ $index }})" 
                  class="p-5 md:p-6 flex justify-between items-center cursor-pointer hover:bg-slate-50/50 transition">
                 <div class="flex items-center gap-4">
                     <div class="bg-emerald-50 text-emerald-600 p-3 rounded-2xl hidden md:block">
@@ -41,13 +40,13 @@
                             {{ $p->basis_pengetahuan->count() }}
                         </span>
                     </div>
-                    <div class="text-slate-400 transition-transform duration-300" :class="expanded ? 'rotate-180 text-emerald-500' : ''">
+                    <div class="text-slate-400 transition-transform duration-300" :class="active === {{ $index }} ? 'rotate-180 text-emerald-500' : ''">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="m6 9l6 6l6-6"/></svg>
                     </div>
                 </div>
             </div>
 
-            <div x-show="expanded" 
+            <div x-show="active === {{ $index }}" 
                  x-collapse
                  x-cloak>
                 <div class="px-5 md:px-6 pb-6 pt-2">
