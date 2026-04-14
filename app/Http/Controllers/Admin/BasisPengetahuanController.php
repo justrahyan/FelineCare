@@ -34,7 +34,7 @@ class BasisPengetahuanController extends Controller
         foreach ($request->gejala as $id_gejala) {
             // Ambil nilai MB dari dropdown dinamis
             $mb = $request->input("mb_{$id_gejala}");
-            $md = $request->input("md_{$id_gejala}") ?? 0;
+            $md = 1 - $mb;
 
             $exists = BasisPengetahuan::where('id_penyakit', $request->id_penyakit)
                 ->where('id_gejala', $id_gejala)
@@ -69,9 +69,11 @@ class BasisPengetahuanController extends Controller
             'id_penyakit' => 'required',
             'id_gejala' => 'required',
             'mb' => 'required|numeric|between:0,1',
-            'md' => 'required|numeric|between:0,1',
         ]);
-        $rule->update($request->all());
+        $data = $request->all();
+        $data['md'] = 1 - $request->mb;
+
+        $rule->update($data);
         return redirect()->route('admin.rules.index')->with('success', 'Aturan berhasil diperbarui!');
     }
 
