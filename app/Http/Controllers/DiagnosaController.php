@@ -38,11 +38,13 @@ class DiagnosaController extends Controller
             $matchCount = 0;
             foreach ($rules as $rule) {
                 if (in_array($rule->id_gejala, $gejalaTerpilih)) {
+                    // Menghitung CF Pakar (MB - MD)
                     $cfPakar = $rule->mb - $rule->md;
-                    $cfUser = 1.0;
+                    // Asumsi CF User adalah 1.0 (Sangat Yakin)
+                    $cfUser = 1.0; 
                     $cfE = $cfPakar * $cfUser;
 
-                    // Rumus CF Combine: CFc = CF1 + CF2 * (1 - CF1)
+                    // Rumus CF Combine
                     if ($matchCount == 0) {
                         $cfLama = $cfE;
                     } else {
@@ -52,6 +54,7 @@ class DiagnosaController extends Controller
                 }
             }
 
+            // Hanya masukkan jika nilai kepastian di atas 0
             if ($cfLama > 0) {
                 $hasilDiagnosa[] = [
                     'nama' => $p->nama_penyakit,
@@ -62,27 +65,36 @@ class DiagnosaController extends Controller
             }
         }
 
-        // Urutkan hasil dari skor tertinggi
+        // 1. Urutkan hasil dari skor tertinggi ke terendah
         usort($hasilDiagnosa, fn($a, $b) => $b['skor'] <=> $a['skor']);
 
-        // Simpan riwayat
+        // 2. Proses Simpan Riwayat jika ada hasil diagnosa
         if (count($hasilDiagnosa) > 0) {
+            $daftarHasilString = "";
+            foreach ($hasilDiagnosa as $h) {
+                $daftarHasilString .= $h['nama'] . " (" . number_format($h['skor'], 2) . "%), ";
+            }
+            $daftarHasilString = rtrim($daftarHasilString, ", ");
+
+            // Simpan ke Tabel Konsultasi
             $simpan = Konsultasi::create([
-                'nama_pemilik' => $request->nama_pemilik ?? 'Guest',
-                'nama_kucing' => $request->nama_kucing ?? 'Anabul',
-                'tanggal' => Carbon::now(),
-                'hasil_diagnosa' => $hasilDiagnosa[0]['nama'], // Ambil yang tertinggi
-                'nilai_cf' => $hasilDiagnosa[0]['skor']
+                'nama_pemilik'   => $request->nama_pemilik ?? 'Guest',
+                'nama_kucing'    => $request->nama_kucing ?? 'Anabul',
+                'tanggal'        => Carbon::now(),
+                'hasil_diagnosa' => $daftarHasilString,       // String lengkap semua penyakit
+                'nilai_cf'       => $hasilDiagnosa[0]['skor'] // Tetap simpan skor tertinggi untuk index admin
             ]);
 
+            // Simpan Detail Gejala yang dipilih
             foreach ($gejalaTerpilih as $idG) {
                 DetailKonsultasi::create([
                     'id_konsultasi' => $simpan->id_konsultasi,
-                    'id_gejala' => $idG
+                    'id_gejala'     => $idG
                 ]);
             }
         }
 
+        // 3. Tampilkan ke halaman hasil
         return view('diagnosa.hasil', compact('hasilDiagnosa'));
     }
 }
