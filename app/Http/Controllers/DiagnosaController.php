@@ -79,7 +79,7 @@ class DiagnosaController extends Controller
             // Simpan ke Tabel Konsultasi
             $simpan = Konsultasi::create([
                 'nama_pemilik'   => $request->nama_pemilik ?? 'Guest',
-                'nama_kucing'    => $request->nama_kucing ?? 'Anabul',
+                'jenis_kucing'    => $request->jenis_kucing ?? 'Lokal',
                 'tanggal'        => Carbon::now(),
                 'hasil_diagnosa' => $daftarHasilString,       // String lengkap semua penyakit
                 'nilai_cf'       => $hasilDiagnosa[0]['skor'] // Tetap simpan skor tertinggi untuk index admin
