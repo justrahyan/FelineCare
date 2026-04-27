@@ -20,7 +20,7 @@
                     <tr class="text-[10px] uppercase text-slate-400 font-black tracking-widest bg-slate-50/50">
                         <th class="p-5 md:p-6 text-center">No</th>
                         <th class="p-5 md:p-6">Tanggal & Waktu</th>
-                        <th class="p-5 md:p-6">Pemilik & Kucing</th>
+                        <th class="p-5 md:p-6">Pemilik & Jenis Kucing</th>
                         <th class="p-5 md:p-6">Hasil Diagnosa</th>
                         <th class="p-5 md:p-6 text-center">Nilai CF</th>
                         <th class="p-5 md:p-6 text-center">Aksi</th>
@@ -38,7 +38,7 @@
                         </td>
                         <td class="p-5 md:p-6">
                             <span class="block font-bold text-slate-800 text-sm md:text-base">{{ $r->nama_pemilik }}</span>
-                            <span class="text-xs text-emerald-600 font-bold uppercase tracking-tighter">Anabul: {{ $r->nama_kucing }}</span>
+                            <span class="text-xs text-emerald-600 font-bold uppercase tracking-tighter">Ras: {{ $r->jenis_kucing }}</span>
                         </td>
                         <td class="p-5 md:p-6">
                             @php

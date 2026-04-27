@@ -30,8 +30,8 @@
                 <div class="flex items-center gap-4">
                     <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 font-black text-xs">K</div>
                     <div>
-                        <p class="text-[10px] text-emerald-400 font-bold uppercase">Kucing</p>
-                        <p class="font-black text-emerald-600 text-sm uppercase">{{ $konsultasi->nama_kucing }}</p>
+                        <p class="text-[10px] text-emerald-400 font-bold uppercase">Jenis Kucing</p>
+                        <p class="font-black text-emerald-600 text-sm uppercase">{{ $konsultasi->jenis_kucing }}</p>
                     </div>
                 </div>
             </div>
