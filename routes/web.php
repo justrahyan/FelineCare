@@ -21,42 +21,26 @@ Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.auth');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/admin', function () {
+    return redirect()->route('admin.dashboard');
+});
+
 // Protected Admin Routes
-Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 
     // CRUD Penyakit
-    Route::resource('/admin/penyakit', PenyakitController::class)->names([
-        'index' => 'admin.penyakit.index',
-        'create' => 'admin.penyakit.create',
-        'store' => 'admin.penyakit.store',
-        'edit' => 'admin.penyakit.edit',
-        'update' => 'admin.penyakit.update',
-        'destroy' => 'admin.penyakit.destroy',
-    ]);
+    Route::resource('penyakit', PenyakitController::class);
 
     // CRUD Gejala
-    Route::resource('/admin/gejala', GejalaController::class)->names([
-        'index' => 'admin.gejala.index',
-        'create' => 'admin.gejala.create',
-        'store' => 'admin.gejala.store',
-        'edit' => 'admin.gejala.edit',
-        'update' => 'admin.gejala.update',
-        'destroy' => 'admin.gejala.destroy',
-    ]);
+    Route::resource('gejala', GejalaController::class);
 
-    // CRUD Basis Pengetahuan (Aturan/Rule)
-    Route::resource('/admin/rules', BasisPengetahuanController::class)->names([
-        'index' => 'admin.rules.index',
-        'create' => 'admin.rules.create',
-        'store' => 'admin.rules.store',
-        'edit' => 'admin.rules.edit',
-        'update' => 'admin.rules.update',
-        'destroy' => 'admin.rules.destroy',
-    ]);
+    // CRUD Basis Pengetahuan
+    Route::resource('rules', BasisPengetahuanController::class);
 
-    // Riwayat Konsultasi (Diagnosa Logs)
-    Route::get('/admin/riwayat', [RiwayatController::class, 'index'])->name('admin.riwayat.index');
-    Route::delete('/admin/riwayat/{id}', [RiwayatController::class, 'destroy'])->name('admin.riwayat.destroy');
-    Route::get('/admin/riwayat/{id}', [RiwayatController::class, 'show'])->name('admin.riwayat.show');
+    // Riwayat Konsultasi
+    Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
+    Route::delete('/riwayat/{id}', [RiwayatController::class, 'destroy'])->name('riwayat.destroy');
+    Route::get('/riwayat/{id}', [RiwayatController::class, 'show'])->name('riwayat.show');
 });
