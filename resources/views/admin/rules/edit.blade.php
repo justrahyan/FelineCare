@@ -34,10 +34,14 @@
                 <label class="block text-[10px] font-bold text-slate-400 mb-2 ml-1">Tingkat Keyakinan Pakar</label>
                 <select name="mb" required class="w-full px-5 py-4 rounded-2xl border-2 border-slate-50 focus:border-emerald-500 focus:bg-white bg-slate-50 outline-none transition font-bold text-sm cursor-pointer">
                     <option value="1.0" {{ $rule->mb == 1.0 ? 'selected' : '' }}>Pasti Ya (1.0)</option>
+                    <option value="0.9" {{ $rule->mb == 0.9 ? 'selected' : '' }}>Sangat Yakin (0.9)</option>
                     <option value="0.8" {{ $rule->mb == 0.8 ? 'selected' : '' }}>Hampir Pasti Ya (0.8)</option>
+                    <option value="0.7" {{ $rule->mb == 0.7 ? 'selected' : '' }}>Sangat Mungkin (0.7)</option>
                     <option value="0.6" {{ $rule->mb == 0.6 ? 'selected' : '' }}>Kemungkinan Besar Ya (0.6)</option>
                     <option value="0.4" {{ $rule->mb == 0.4 ? 'selected' : '' }}>Mungkin Ya (0.4)</option>
+                    <option value="0.3" {{ $rule->mb == 0.3 ? 'selected' : '' }}>Sedikit Mungkin (0.3)</option>
                     <option value="0.2" {{ $rule->mb == 0.2 ? 'selected' : '' }}>Hampir Mungkin (0.2)</option>
+                    <option value="0.1" {{ $rule->mb == 0.1 ? 'selected' : '' }}>Sangat Sedikit Mungkin (0.1)</option>
                     <option value="0.0" {{ $rule->mb == 0.0 ? 'selected' : '' }}>Tidak (0.0)</option>
                 </select>
                 <input type="hidden" name="md" value="0">

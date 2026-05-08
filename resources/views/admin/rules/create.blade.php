@@ -40,10 +40,14 @@
                         <label class="text-[10px] font-bold text-slate-400 ml-1">Tingkat Keyakinan Pakar</label>
                         <select name="mb_{{ $g->id_gejala }}" class="w-full px-3 py-2 rounded-xl border border-slate-100 bg-white text-xs font-bold text-slate-600 outline-none focus:border-emerald-500 cursor-pointer">
                             <option value="1.0">Pasti Ya (1.0)</option>
+                            <option value="0.9">Sangat Yakin (0.9)</option>
                             <option value="0.8">Hampir Pasti Ya (0.8)</option>
+                            <option value="0.7">Sangat Mungkin (0.7)</option>
                             <option value="0.6" selected>Kemungkinan Besar Ya (0.6)</option>
                             <option value="0.4">Mungkin Ya (0.4)</option>
+                            <option value="0.3">Sedikit Mungkin (0.3)</option>
                             <option value="0.2">Hampir Mungkin (0.2)</option>
+                            <option value="0.1">Sangat Sedikit Mungkin (0.1)</option>
                             <option value="0.0">Tidak (0.0)</option>
                         </select>
                         <input type="hidden" name="md_{{ $g->id_gejala }}" value="0">
