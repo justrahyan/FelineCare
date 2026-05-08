@@ -79,10 +79,35 @@
                             <input type="text" name="nama_pemilik" x-model="nama_pemilik" placeholder="Nama Anda" 
                                 class="w-full px-5 py-4 rounded-2xl border-2 border-slate-50 focus:border-emerald-500 focus:bg-white bg-slate-50/50 outline-none transition font-bold text-sm">
                         </div>
-                        <div class="space-y-1.5">
+                        <div class="space-y-1.5" x-data="{ isManual: false }">
                             <label class="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">Jenis / Ras Kucing</label>
-                            <input type="text" name="jenis_kucing" x-model="jenis_kucing" placeholder="Contoh: Persia / Lokal" 
-                                class="w-full px-5 py-4 rounded-2xl border-2 border-slate-50 focus:border-emerald-500 focus:bg-white bg-slate-50/50 outline-none transition font-bold text-sm">
+                            
+                            <div class="relative">
+                                <select x-model="jenis_kucing" 
+                                    @change="isManual = (jenis_kucing === 'manual'); if(isManual) jenis_kucing = ''"
+                                    class="w-full px-5 py-4 rounded-2xl border-2 border-slate-50 focus:border-emerald-500 focus:bg-white bg-slate-50/50 outline-none transition font-bold text-sm appearance-none cursor-pointer">
+                                    <option value="" disabled selected>Pilih Jenis Kucing</option>
+                                    <option value="Domestik / Kampung">Domestik / Kampung</option>
+                                    <option value="Persia">Persia</option>
+                                    <option value="Anggora">Anggora</option>
+                                    <option value="Maine Coon">Maine Coon</option>
+                                    <option value="Siam (Siamese)">Siam (Siamese)</option>
+                                    <option value="Ragdoll">Ragdoll</option>
+                                    <option value="Bengal">Bengal</option>
+                                    <option value="manual">-- Isi Manual / Lainnya --</option>
+                                </select>
+                                <div class="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                </div>
+                            </div>
+
+                            <div x-show="isManual" x-transition class="mt-3 animate-fade-in">
+                                <input type="text" name="jenis_kucing" x-model="jenis_kucing" placeholder="Masukkan jenis kucing lainnya..." 
+                                    class="w-full px-5 py-4 rounded-2xl border-2 border-emerald-100 focus:border-emerald-500 focus:bg-white bg-emerald-50/30 outline-none transition font-bold text-sm">
+                                <p class="text-[9px] text-emerald-600 mt-1 ml-1 font-bold">* Silakan masukkan jenis kucing Anda di sini</p>
+                            </div>
+
+                            <input type="hidden" name="jenis_kucing" :value="jenis_kucing" x-if="!isManual">
                         </div>
                     </div>
                 </div>
